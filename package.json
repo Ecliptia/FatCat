@@ -1,0 +1,68 @@
+{
+  "name": "fatcat",
+  "version": "1.0.0-dev",
+  "description": "FatCat é um bot de música completo em desenvolvimento para Discord, usando Lavalink e Moonlink, com suporte a múltiplos nodes, filtros avançados e comandos otimizados para servidores.",
+  "keywords": [
+    "discord",
+    "bot",
+    "music",
+    "discord-music-bot",
+    "lavalink",
+    "moonlink",
+    "discord.js",
+    "filters",
+    "spotify",
+    "youtube",
+    "soundcloud",
+    "autoplay",
+    "radio",
+    "queue",
+    "playlist",
+    "buttons",
+    "discord-bot"
+  ],
+  "homepage": "https://github.com/Ecliptia/FatCat#readme",
+  "bugs": {
+    "url": "https://github.com/Ecliptia/FatCat/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ecliptia/FatCat.git"
+  },
+  "license": "GPL-3.0",
+  "author": "FatCat Team",
+  "contributors": [
+    {
+      "name": "1Lucas1apk",
+      "url": "https://github.com/1lucas1apk"
+    },
+    {
+      "name": "Moto65075",
+      "url": "https://github.com/Moto65075"
+    }
+  ],
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "fatcat": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "node src/tests/index.js",
+    "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/1Lucas1apk"
+  },
+  "private": true,
+  "dependencies": {
+    "discord.js": "^14.21.0",
+    "dotenv": "^17.2.1",
+    "moonlink.js": "^4.52.2"
+  }
+}

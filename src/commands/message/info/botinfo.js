@@ -1,9 +1,10 @@
 import Command from '../../../structures/Command.js';
 import logger from '../../../../logger.js';
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } from 'discord.js';
 import config from '../../../../config.js';
 import packageJson from '../../../../package.json' with { type: 'json' };
 import sharderName from "../../../assets/sharderName.js";
+import formatUptime from '../../../utils/formatUptime.js';
 
 export default class BotInfoMessage extends Command {
     constructor() {
@@ -20,15 +21,14 @@ export default class BotInfoMessage extends Command {
         logger.debug(`[Command:botinfo-message] Executando comando para ${message.author.tag}`);
         try {
             const uptime = process.uptime();
-            const days = Math.floor(uptime / 86400);
-            const hours = Math.floor((uptime % 86400) / 3600);
-            const minutes = Math.floor((uptime % 3600) / 60);
-            const seconds = Math.floor(uptime % 60);
+            const formattedUptime = formatUptime(uptime);
 
             const version = packageJson.version;
             const totalGuilds = message.client.guilds.cache.size;
             const totalUsers = message.client.users.cache.size;
             const totalCommands = message.client.commands.size + message.client.slashCommands.size;
+            const messageCommands = message.client.commands.size;
+            const slashCommands = message.client.slashCommands.size;
 
             const contributors = packageJson.contributors || [];
             const author = packageJson.author;
@@ -50,25 +50,164 @@ export default class BotInfoMessage extends Command {
                 contributorsText = translate('botinfo.no_contributors');
             }
 
-            const embed = new EmbedBuilder()
+            const initialEmbed = new EmbedBuilder()
                 .setColor(config.embedColor)
                 .setTitle(translate('botinfo.title'))
                 .setDescription(
                     translate('botinfo.greeting') + '\n\n' +
                     translate('botinfo.about_me', { version: version }) + '\n\n' +
-                    translate('botinfo.stats', { guilds: totalGuilds, users: totalUsers, commands: totalCommands, uptime: `${days}d ${hours}h ${minutes}m ${seconds}s`, shardId: sharderName[message.client.shard?.ids?.[0]] ?? 0, totalShards: message.client.shard?.count ?? 1 }) + '\n\n' +
+                    translate('botinfo.stats', { guilds: totalGuilds, users: totalUsers, commands: totalCommands, uptime: formattedUptime, shardId: sharderName[message.client.shard?.ids?.[0]] ?? 0, totalShards: message.client.shard?.count ?? 1 }) + '\n\n' +
                     translate('botinfo.thanks', { authorTag: message.author.id }) + '\n\n' +
                     contributorsText
                 )
-                .setThumbnail("https://media.discordapp.net/attachments/1151684866971275325/1398692603691798732/36_Sem_Titulo_20250726124442.png?ex=6886497f&is=6884f7ff&hm=7f6ba32c7e34418d32b47483525ce7275f067f013f1992db0cb82c0ad50fce16&=&format=webp&quality=lossless&width=749&height=810")
-                .setImage("https://media.discordapp.net/attachments/1151684866971275325/1398713965273550980/29_Sem_Titulo_20250726140947.png?ex=68865d64&is=68850be4&hm=3e1f96d0acd617a7af48adb3ee8a17cfa03411ace6a1d1b94bc63d01c2e33ef5&=&format=webp&quality=lossless&width=1540&height=589")
+                .setThumbnail(config.images.botThumbnail)
+                .setImage(config.images.botImage)
                 .setFooter({
                     text: translate('botinfo.footer', { authorTag: message.author.tag }),
                     iconURL: message.author.avatarURL()
                 })
                 .setTimestamp();
 
-            await message.reply({ embeds: [embed] });
+            const selectMenu = new StringSelectMenuBuilder()
+                .setCustomId('botinfo_select')
+                .setPlaceholder(translate('botinfo.select_placeholder'))
+                .addOptions([
+                    new StringSelectMenuOptionBuilder()
+                        .setLabel(translate('botinfo.option_tech'))
+                        .setValue('tech'),
+                    new StringSelectMenuOptionBuilder()
+                        .setLabel(translate('botinfo.option_authors'))
+                        .setValue('authors'),
+                    new StringSelectMenuOptionBuilder()
+                        .setLabel(translate('botinfo.option_processing'))
+                        .setValue('processing'),
+                    new StringSelectMenuOptionBuilder()
+                        .setLabel(translate('botinfo.option_database'))
+                        .setValue('database'),
+                    new StringSelectMenuOptionBuilder()
+                        .setLabel(translate('botinfo.option_djs'))
+                        .setValue('djs'),
+                    new StringSelectMenuOptionBuilder()
+                        .setLabel(translate('botinfo.option_commands_executed'))
+                        .setValue('commands_executed'),
+                    new StringSelectMenuOptionBuilder()
+                        .setLabel(translate('botinfo.option_about_me'))
+                        .setValue('about_me'),
+                ]);
+
+            const buttonsRow = new ActionRowBuilder()
+                .addComponents(
+                    new ButtonBuilder()
+                        .setLabel(translate('botinfo.button_github'))
+                        .setStyle(ButtonStyle.Link)
+                        .setURL(packageJson.homepage),
+                    new ButtonBuilder()
+                        .setLabel(translate('botinfo.button_support'))
+                        .setStyle(ButtonStyle.Link)
+                        .setURL(config.supportServerLink),
+                    new ButtonBuilder()
+                        .setLabel(translate('botinfo.button_invite'))
+                        .setStyle(ButtonStyle.Link)
+                        .setURL(`https://discord.com/oauth2/authorize?client_id=${message.client.user.id}&permissions=8&scope=bot%20applications.commands`),
+                );
+
+            const selectRow = new ActionRowBuilder().addComponents(selectMenu);
+
+            const reply = await message.reply({
+                embeds: [initialEmbed],
+                components: [selectRow, buttonsRow],
+                fetchReply: true,
+            });
+
+            const collector = reply.createMessageComponentCollector({
+                filter: i => i.customId === 'botinfo_select' && i.user.id === message.author.id,
+                time: 120000, // 2 minutos
+            });
+
+            collector.on('collect', async i => {
+                const selected = i.values[0];
+                let newEmbed = new EmbedBuilder()
+                    .setColor(config.embedColor)
+                    .setTimestamp()
+                    .setThumbnail(config.images.botThumbnail)
+                    .setImage(config.images.botImage)
+
+                const memoryUsage = process.memoryUsage();
+                const rssMemory = (memoryUsage.rss / 1024 / 1024).toFixed(2);
+                const heapTotalMemory = (memoryUsage.heapTotal / 1024 / 1024).toFixed(2);
+                const heapUsedMemory = (memoryUsage.heapUsed / 1024 / 1024).toFixed(2);
+
+                const djsVersion = packageJson.dependencies['discord.js'];
+                const moonlinkVersion = packageJson.dependencies['moonlink.js'];
+                const firebaseVersion = packageJson.dependencies['firebase'];
+                const i18nextVersion = packageJson.dependencies['i18next'];
+                const dotenvVersion = packageJson.dependencies['dotenv'];
+
+                switch (selected) {
+                    case 'tech':
+                        newEmbed.setTitle(translate('botinfo.option_tech'))
+                            .setDescription(translate('botinfo.tech_description', {
+                                djsVersion,
+                                moonlinkVersion,
+                                firebaseVersion,
+                                i18nextVersion,
+                                dotenvVersion
+                            }));
+                        break;
+                    case 'authors':
+                        newEmbed.setTitle(translate('botinfo.option_authors'))
+                            .setDescription(translate('botinfo.authors_description'));
+                        break;
+                    case 'processing':
+                        newEmbed.setTitle(translate('botinfo.option_processing'))
+                            .setDescription(translate('botinfo.processing_description', {
+                                rssMemory,
+                                heapTotalMemory,
+                                heapUsedMemory
+                            }));
+                        break;
+                    case 'database':
+                        newEmbed.setTitle(translate('botinfo.option_database'))
+                            .setDescription(translate('botinfo.database_description'));
+                        break;
+                    case 'djs':
+                        newEmbed.setTitle(translate('botinfo.option_djs'))
+                            .setDescription(translate('botinfo.djs_description', { djsVersion }));
+                        break;
+                    case 'commands_executed':
+                        newEmbed.setTitle(translate('botinfo.option_commands_executed'))
+                            .setDescription(translate('botinfo.commands_executed_description', {
+                                totalCommands,
+                                messageCommands,
+                                slashCommands
+                            }));
+                        break;
+                    case 'about_me':
+                        const createdAt = i.client.user.createdAt.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
+                        const botId = i.client.user.id;
+                        const botTag = i.client.user.tag;
+                        const botStatus = i.client.user.presence?.status || translate('botinfo.presence_unknown');
+                        const botActivity = i.client.user.presence?.activities[0]?.name ? `(${i.client.user.presence.activities[0].type} ${i.client.user.presence.activities[0].name})` : '';
+                        newEmbed.setTitle(translate('botinfo.option_about_me'))
+                            .setDescription(translate('botinfo.about_me_detailed', {
+                                createdAt,
+                                botId,
+                                botTag,
+                                botStatus,
+                                botActivity,
+                                botName: i.client.user.username
+                            }));
+                        break;
+                }
+                await i.update({ embeds: [newEmbed], components: [selectRow, buttonsRow] });
+            });
+
+            collector.on('end', collected => {
+                if (collected.size === 0) {
+                    reply.edit({ components: [] }).catch(logger.error);
+                }
+            });
+
             logger.debug(`[Command:botinfo-message] Respondeu para ${message.author.tag} com informações do bot.`);
         } catch (error) {
             logger.error(`[Command:botinfo-message] Falha ao executar comando para ${message.author.tag}`, error);

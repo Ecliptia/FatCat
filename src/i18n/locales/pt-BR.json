@@ -33,7 +33,8 @@
         "field_uptime": "<:ete_abelhinha:1398491849936732221> **Tempo de Atividade**",
         "api_latency": "<:api:1398484605732126803> **Latência da API:** `{{apiLatency}}` ms",
         "bot_latency": "<:MaterialSymbolsRobot2Sharp:1398485294893895712> **Latência do Bot:** `{{latency}}` ms",
-        "database_latency": "<:Mufflien_Stare:1398488840775274567> **Latência da Database:** `0`ms **(Implementando)**",
+        "database_latency": "<:Mufflien_Stare:1398488840775274567> **Latência da Database:** `{{databaseLatency}}`ms",
+        "database_disconnected": "Desconectado",
         "requested_by": "Requisitado por {{authorTag}}"
     },
     "setlang": {
@@ -47,7 +48,10 @@
             }
         },
         "no_permission": "Você não tem permissão para usar este comando. Apenas membros com a permissão 'Gerenciar Servidor' podem fazê-lo.",
-        "success": "Idioma do bot definido para **{{locale}}** neste servidor."
+        "success": "Idioma do bot definido para **{{locale}}** neste servidor.",
+        "select_language_placeholder": "Selecione um idioma...",
+        "select_language_prompt": "Por favor, selecione o idioma que você gostaria que eu usasse neste servidor:",
+        "selection_timeout": "Você não selecionou um idioma a tempo. Por favor, tente novamente."
     },
     "botinfo": {
         "description": "Descubra tudo sobre o FatCat, o bot astronauta e DJ das galáxias!",
@@ -63,10 +67,28 @@
         "contributors_list": "**Co-pilotos de bordo:**",
         "no_contributors": "Ainda não tenho co-pilotos oficiais... mas a tripulação está sempre de portas abertas!",
         "thanks": "Ei, <@{{authorTag}}>, valeu por me ter por perto. Se a vida pesar, coloca seus fones, respira fundo e me chama: seja pra dançar, refletir ou curtir aquela vibe da Billie Eilish, eu tô aqui. Obrigado por embarcar comigo nessa viagem cósmica! <:gleep_glorp_cat:1398715997770485940>",
-        "footer": "Requisitado por {{authorTag}}"
+        "footer": "Requisitado por {{authorTag}}",
+        "select_placeholder": "Selecione uma categoria para mais detalhes...",
+        "option_tech": "Tecnologias",
+        "option_authors": "Autores e Colaboradores",
+        "option_processing": "Processamento e Performance",
+        "option_database": "Banco de Dados",
+        "option_djs": "Discord.js",
+        "option_commands_executed": "Comandos Executados",
+        "option_about_me": "Sobre Mim",
+        "button_github": "GitHub",
+        "button_support": "Servidor de Suporte",
+        "button_invite": "Convidar Bot",
+        "tech_description": "O FatCat é construído com um time de tecnologias que trabalham em harmonia para te entregar a melhor experiência:\n\n- **Node.js:** É o coração do bot, garantindo que ele seja rápido e consiga lidar com tudo ao mesmo tempo.\n- **Discord.js:** Nossa ponte para o Discord! Com ele, o FatCat interage com os servidores e com você de forma fluida.\n- **Moonlink.js:** A magia por trás da música! É o que permite ao FatCat tocar suas músicas favoritas com uma qualidade incrível.\n- **Firebase Realtime Database:** Nosso diário de bordo! Onde guardamos as configurações do seu servidor, como o idioma que você prefere.\n- **i18next:** Para que o FatCat possa conversar com você no seu idioma, não importa de onde você seja!\n\nE aqui estão alguns dos nossos pacotes principais:\n- `discord.js`: {{djsVersion}}\n- `moonlink.js`: {{moonlinkVersion}}\n- `firebase`: {{firebaseVersion}}\n- `i18next`: {{i18nextVersion}}\n- `dotenv`: {{dotenvVersion}}\n\nEssa combinação nos ajuda a manter o FatCat sempre pronto para a ação, com um desempenho que você pode confiar!",
+        "authors_description": "Este bot ronronante aqui nasceu das patinhas da mesma tripulação que criou a **Moonlink.js**! 🛸\n\n**Oficiais de bordo:**\n- **1Lucas1apk**\n- **Moto65075**\n\nE claro, com a força da galera que sempre dá aquela ajudinha estelar!",
+        "processing_description": "Por dentro, sou afinado como uma boa mixtape intergaláctica! 💽\nOrganizo meus comandos, respondo rapidinho e uso só o necessário da memória — sem travar o som nem o rolê.\n\n- **Memória Total:** {{rssMemory}} MB\n- **Heap Total:** {{heapTotalMemory}} MB\n- **Usada:** {{heapUsedMemory}} MB\n\nComigo, até evento cósmico flui suave!",
+        "database_description": "Minhas lembranças vivem num diário mágico chamado **Firebase**! ✨\n\nEle me ajuda a lembrar de tudo — do idioma do seu servidor até suas preferências musicais:\n- Atualiza tudo na hora\n- Cresce comigo\n- Usa cache esperto\n- E nunca esquece, nem depois de um reboot galáctico!",
+        "djs_description": "Uso o **Discord.js v{{djsVersion}}** como minha ponte com o universo Discord! 🌌\n\nCom ele, consigo montar aquelas mensagens estilosas, responder comandos rapidinho e dividir bem o trabalho quando tô em muitos servidores. Tudo sem perder o ritmo!",
+        "commands_executed_description": "Já toquei muitos comandos por aí! 🎶\n\n- **Total carregados:** {{totalCommands}}\n- **De mensagem:** {{messageCommands}}\n- **Slash:** {{slashCommands}}\n\nCada um feito com jeitinho felino pra deixar sua jornada mais divertida!",
+        "about_me_detailed": "Olá! Eu sou o **{{botName}}** (ID: `{{botId}}`, Tag: `{{botTag}}`), um bot nascido no Brasil 🇧🇷, com um CPF que mais parece um ronronar: `400.289.220-00` (miau!).\n\nMinha jornada começou em **{{createdAt}}**, e desde então, tenho me dedicado a trazer música e diversão para a sua comunidade. Atualmente, estou **{{botStatus}}** {{botActivity}}.\n\nSou um felino digital que adora explorar o universo Discord, sempre pronto para ajudar e animar o seu servidor com as melhores batidas e funcionalidades. Minha missão é tornar a sua experiência no Discord ainda mais incrível e cheia de ronronares!"
     },
     "error": {
-        "command_not_found": "🤔 | Esse comando era pra realmente existir? Procurei na meu ipod e não tem isso, tente novamente mais tarde, vou alertar meus desenvolvedores.",
-        "generic_error": "❌ | Droga, meu windows tá atualizando, não conseguirei responder agora, notificando desenvolvedores que esse comando está fora do ar ou com defeito."
+        "command_not_found": "🤔 | Esse comando era pra realmente existir? Procurei no meu iPod e não tem isso, tente novamente mais tarde, vou alertar meus desenvolvedores.",
+        "generic_error": "❌ | Droga, meu Windows está atualizando, não conseguirei responder agora, notificando desenvolvedores que esse comando está fora do ar ou com defeito."
     }
 }

@@ -50,19 +50,19 @@
         "success": "Bot language set to **{{locale}}** in this server."
     },
     "botinfo": {
-        "description": "Displays detailed information about FatCat, the astronaut bot!",
+        "description": "Discover everything about FatCat—the astronaut bot and galactic DJ!",
         "aliases": ["info", "about"],
         "usage": {
             "command": "botinfo",
-            "description": "Use this command to discover everything about FatCat, from his space mission to his latest achievements!"
+            "description": "Use this command to learn about my mission, where I came from, and where I plan to purr next."
         },
-        "title": "🚀 FatCat: The Astronaut Cat on a Mission!",
-        "greeting": "Hello, earthling! I am FatCat!",
-        "about_me": "My journey began in a bustling world full of sounds. But my feline heart yearned for more! So, one day, I took off in my small spaceship and headed for the moons of **Ecliptia**. There, under the glow of distant suns, I discovered something magical: music! It was as if each note was a caress, a cosmic purr. Since then, my mission is to bring this melody to all corners of the universe, especially to your server. With the agility of a feline and the vastness of space, I am always ready to take off with the best beats. Currently on version `v{{version}}`.",
-        "stats": "I am currently in `{{guilds}}` servers, serving over `{{users}}` users with my `{{commands}}` innovative commands. My space journey has already lasted `{{uptime}}`!",
-        "contributors_list": "**Special Thanks to Our Co-Pilots:**",
-        "no_contributors": "No additional co-pilots at the moment, but the crew is always growing!",
-        "thanks": "Thank you for having me aboard, <@{{authorTag}}>! Remember, if life on Earth gets a bit much, or if you need a shoulder to lean on (or a pair of headphones), you can call me. Whether for happy songs that make you dance or sad ones that help you process, I'll be here, playing the soundtrack to your journey. Together, let's explore the universe of music and make every day more fun! 🌌",
+        "title": "Is the Moon really made of cheese?",
+        "greeting": "Hey, earthling! I’m FatCat! <:stars:1398495087310409838>",
+        "about_me": "Tired of Earth’s noise, I jumped into my ship and headed to the moons of Ecliptia, where I discovered the power of music: each note is a cosmic purr. Since then, I’ve been sharing my tunes across servers with catlike grace and an open heart. Now I’m cruising on version **`v{{version}}`**, ready to follow the beat wherever it leads.",
+        "stats": "I’m in **`{{guilds}}`** servers, reaching **`{{users}}`** fellow travelers with **`{{commands}}`** musical commands. I’ve been online for **`{{uptime}}`**, broadcasting from shard **`{{shardId}}`** (of **`{{totalShards}}`**).",
+        "contributors_list": "**Co-pilots on deck:**",
+        "no_contributors": "No official co-pilots yet... but the crew’s always ready to welcome more!",
+        "thanks": "Hey, <@{{authorTag}}>, thanks for keeping me close. If life gets heavy, pop in your headphones, take a deep breath, and call me—whether you need to dance, reflect, or vibe to that Billie Eilish track, I’ve got you. Thanks for joining me on this cosmic journey! 🌌",
         "footer": "Requested by {{authorTag}}"
     },
     "error": {

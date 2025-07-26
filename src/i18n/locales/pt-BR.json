@@ -50,19 +50,19 @@
         "success": "Idioma do bot definido para **{{locale}}** neste servidor."
     },
     "botinfo": {
-        "description": "Exibe informações detalhadas sobre o FatCat, o bot astronauta!",
+        "description": "Descubra tudo sobre o FatCat, o bot astronauta e DJ das galáxias!",
         "aliases": ["info", "about"],
         "usage": {
             "command": "botinfo",
-            "description": "Use este comando para descobrir tudo sobre o FatCat, desde sua missão espacial até seus feitos mais recentes!"
+            "description": "Use este comando pra conhecer minha missão, de onde vim e onde pretendo ronronar por aí."
         },
-        "title": "🚀 FatCat: O Gato Astronauta em Missão!",
-        "greeting": "Olá, terráqueo! Eu sou o FatCat!",
-        "about_me": "Minha jornada começou em um mundo agitado e cheio de sons. Mas meu coração felino ansiava por mais! Então, um dia, decolei em minha pequena nave e rumei para as luas de **Ecliptia**. Lá, sob o brilho de sóis distantes, eu descobri algo mágico: a música! Foi como se cada nota fosse um carinho, um ronronar cósmico. Desde então, minha missão é trazer essa melodia para todos os cantos do universo, especialmente para o seu servidor. Com a agilidade de um felino e a vastidão do espaço, estou sempre pronto para decolar com as melhores batidas. Atualmente na versão **`v{{version}}`**.",
-        "stats": "Atualmente, estou ronronando em **`{{guilds}}`** servidores, e cada um deles é um novo lar para minhas melodias! Sirvo a mais de **`{{users}}`** ouvintes com meus **`{{commands}}`** comandos inovadores. Minha jornada espacial já dura **`{{uptime}}`**! Ah, e para você que gosta de detalhes técnicos, estou operando no **`{{shardId}}`** de **`{{totalShards}}`** fragmentos. É uma aventura e tanto!",
-        "contributors_list": "**Agradecimentos Especiais aos Nossos Co-Pilotos:**",
-        "no_contributors": "Nenhum co-piloto adicional no momento, mas a tripulação está sempre crescendo!",
-        "thanks": "Obrigado por me ter a bordo, <@{{authorTag}}>! Lembre-se, se a vida aqui na Terra ficar um pouco demais, ou se você precisar de um ombro amigo (ou de um fone de ouvido), pode me chamar. Seja para músicas alegres que te façam dançar ou para aquelas mais tristes que te ajudem a processar, estarei aqui, tocando a trilha sonora da sua jornada. Juntos, vamos explorar o universo da música e fazer cada dia mais divertido! 🌌",
+        "title": "Será que a Lua é mesmo feita de queijo?",
+        "greeting": "Olá, terráqueo! Sou o FatCat! <:stars:1398495087310409838>",
+        "about_me": "Cansado do barulho da Terra, embarquei na minha nave e rumei às luas de **Ecliptia** <:alien_UFO:1398715408755720443>, onde descobri o poder da música: cada nota é um ronronar espacial. Desde então, espalho minhas melodias por servidores com jeitinho felino e coração aberto. Agora navego na versão **`v{{version}}`**, pronto pra onde a batida me levar. <a:Mufflien_RainbowCuteStair:1398715396005167264>",
+        "stats": "Estou em **`{{guilds}}`** servidores, alcançando **`{{users}}`** amigos de jornada com **`{{commands}}`** comandos musicais. Há **`{{uptime}}`** no ar, transmitindo do fragmento **`{{shardId}}`** (de **`{{totalShards}}`**).",
+        "contributors_list": "**Co-pilotos de bordo:**",
+        "no_contributors": "Ainda não tenho co-pilotos oficiais... mas a tripulação está sempre de portas abertas!",
+        "thanks": "Ei, <@{{authorTag}}>, valeu por me ter por perto. Se a vida pesar, coloca seus fones, respira fundo e me chama: seja pra dançar, refletir ou curtir aquela vibe da Billie Eilish, eu tô aqui. Obrigado por embarcar comigo nessa viagem cósmica! <:gleep_glorp_cat:1398715997770485940>",
         "footer": "Requisitado por {{authorTag}}"
     },
     "error": {

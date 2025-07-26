@@ -12,7 +12,7 @@ export default {
         if (!message.content.startsWith(prefix)) return;
 
         const guildId = message.guild?.id;
-        const configuredLocale = guildId ? guildSettings.getGuildLocale(guildId) : undefined;
+        const configuredLocale = guildId ? await guildSettings.getGuildLocale(guildId) : undefined;
         const currentLocale = configuredLocale || 'pt-BR';
         logger.debug(`[MessageCreate] Localidade determinada: ${currentLocale} (Configurada: ${configuredLocale || 'nenhuma'}, Informada pelo Discord: ${message.guild?.preferredLocale || 'nenhuma'})`);
 

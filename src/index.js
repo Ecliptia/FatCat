@@ -13,4 +13,4 @@ const manager = new ShardingManager('./src/bot.js', {
 
 manager.spawn().then()
 
-manager.on("shardCreate", (shard) => logger.info("Shard " + shard.id + " created"))
+manager.on("shardCreate", (shard) => logger.info("Shard " + shard.id + " (Spawnado)"))

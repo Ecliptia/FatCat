@@ -22,7 +22,19 @@
             }
         },
         "reply": "🐢 Pong! API: {{apiLatency}}ms, Eu: {{latency}}ms. Devagar quase parando... ou não!",
-        "pinging": "💫 Girando a antena pra pegar o melhor sinal..."
+        "pinging": "💫 Girando a antena pra pegar o melhor sinal...",
+        "status_high_tech": "Meu satélite é de alta tecnologia, a conexão é instantânea!",
+        "status_interference": "Estamos detectando interferência da nave dos ETs! 👽",
+        "status_normal": "Conexão estável, sem turbulências no espaço.",
+        "field_database": "Banco de Dados",
+        "field_database_message": "Ainda estamos construindo a nave-mãe do banco de dados, aguarde!",
+        "field_website": "Website",
+        "field_website_message": "Nosso website está em órbita, mas ainda não pousou!",
+        "field_uptime": "<:ete_abelhinha:1398491849936732221> **Tempo de Atividade**",
+        "api_latency": "<:api:1398484605732126803> **Latência da API:** `{{apiLatency}}` ms",
+        "bot_latency": "<:MaterialSymbolsRobot2Sharp:1398485294893895712> **Latência do Bot:** `{{latency}}` ms",
+        "database_latency": "<:Mufflien_Stare:1398488840775274567> **Latência da Database:** `0`ms **(Implementando)**",
+        "requested_by": "Requisitado por {{authorTag}}"
     },
     "setlang": {
         "name": "definiridioma",
@@ -36,6 +48,22 @@
         },
         "no_permission": "Você não tem permissão para usar este comando. Apenas membros com a permissão 'Gerenciar Servidor' podem fazê-lo.",
         "success": "Idioma do bot definido para **{{locale}}** neste servidor."
+    },
+    "botinfo": {
+        "description": "Exibe informações detalhadas sobre o FatCat, o bot astronauta!",
+        "aliases": ["info", "about"],
+        "usage": {
+            "command": "botinfo",
+            "description": "Use este comando para descobrir tudo sobre o FatCat, desde sua missão espacial até seus feitos mais recentes!"
+        },
+        "title": "🚀 FatCat: O Gato Astronauta em Missão!",
+        "greeting": "Olá, terráqueo! Eu sou o FatCat!",
+        "about_me": "Minha jornada começou em um mundo agitado e cheio de sons. Mas meu coração felino ansiava por mais! Então, um dia, decolei em minha pequena nave e rumei para as luas de **Ecliptia**. Lá, sob o brilho de sóis distantes, eu descobri algo mágico: a música! Foi como se cada nota fosse um carinho, um ronronar cósmico. Desde então, minha missão é trazer essa melodia para todos os cantos do universo, especialmente para o seu servidor. Com a agilidade de um felino e a vastidão do espaço, estou sempre pronto para decolar com as melhores batidas. Atualmente na versão **`v{{version}}`**.",
+        "stats": "Atualmente, estou ronronando em **`{{guilds}}`** servidores, e cada um deles é um novo lar para minhas melodias! Sirvo a mais de **`{{users}}`** ouvintes com meus **`{{commands}}`** comandos inovadores. Minha jornada espacial já dura **`{{uptime}}`**! Ah, e para você que gosta de detalhes técnicos, estou operando no **`{{shardId}}`** de **`{{totalShards}}`** fragmentos. É uma aventura e tanto!",
+        "contributors_list": "**Agradecimentos Especiais aos Nossos Co-Pilotos:**",
+        "no_contributors": "Nenhum co-piloto adicional no momento, mas a tripulação está sempre crescendo!",
+        "thanks": "Obrigado por me ter a bordo, <@{{authorTag}}>! Lembre-se, se a vida aqui na Terra ficar um pouco demais, ou se você precisar de um ombro amigo (ou de um fone de ouvido), pode me chamar. Seja para músicas alegres que te façam dançar ou para aquelas mais tristes que te ajudem a processar, estarei aqui, tocando a trilha sonora da sua jornada. Juntos, vamos explorar o universo da música e fazer cada dia mais divertido! 🌌",
+        "footer": "Requisitado por {{authorTag}}"
     },
     "error": {
         "command_not_found": "🤔 | Esse comando era pra realmente existir? Procurei na meu ipod e não tem isso, tente novamente mais tarde, vou alertar meus desenvolvedores.",

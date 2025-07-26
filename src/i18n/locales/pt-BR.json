@@ -1,0 +1,44 @@
+{
+    "categories": {
+        "info": "Informações",
+        "music": "Música",
+        "moderation": "Moderação",
+        "admin": "Administração",
+        "general": "Geral"
+    },
+    "tags": {
+        "utility": "Utilidade",
+        "fun": "Diversão",
+        "admin": "Administração"
+    },
+    "ping": {
+        "description": "Verifica a latência do bot e da API do Discord.",
+        "aliases": ["latencia"],
+        "usage": {
+            "command": "ping",
+            "description": "Use este comando para ver o tempo de resposta atual do bot. É um ótimo jeito de saber se estou online e respondendo!",
+            "args": {
+                "target": "Opcional: O alvo para verificar a latência (ex: 'api', 'database')."
+            }
+        },
+        "reply": "🐢 Pong! API: {{apiLatency}}ms, Eu: {{latency}}ms. Devagar quase parando... ou não!",
+        "pinging": "💫 Girando a antena pra pegar o melhor sinal..."
+    },
+    "setlang": {
+        "name": "definiridioma",
+        "description": "Define o idioma do bot para este servidor.",
+        "usage": {
+            "command": "/setlang <idioma>",
+            "description": "Use este comando para mudar o idioma que o bot usa para responder neste servidor.",
+            "args": {
+                "locale": "O idioma a ser definido (ex: pt-BR, en-US)."
+            }
+        },
+        "no_permission": "Você não tem permissão para usar este comando. Apenas membros com a permissão 'Gerenciar Servidor' podem fazê-lo.",
+        "success": "Idioma do bot definido para **{{locale}}** neste servidor."
+    },
+    "error": {
+        "command_not_found": "🤔 | Esse comando era pra realmente existir? Procurei na meu ipod e não tem isso, tente novamente mais tarde, vou alertar meus desenvolvedores.",
+        "generic_error": "❌ | Droga, meu windows tá atualizando, não conseguirei responder agora, notificando desenvolvedores que esse comando está fora do ar ou com defeito."
+    }
+}

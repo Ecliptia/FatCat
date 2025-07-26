@@ -9,7 +9,7 @@ export default {
         if (!interaction.isCommand()) return;
 
         const guildId = interaction.guild?.id;
-        const configuredLocale = guildId ? guildSettings.getGuildLocale(guildId) : undefined;
+        const configuredLocale = guildId ? await guildSettings.getGuildLocale(guildId) : undefined;
         const currentLocale = configuredLocale || 'pt-BR';
         logger.debug(`[InteractionCreate] Localidade determinada: ${currentLocale} (Configurada: ${configuredLocale || 'nenhuma'}, Informada pelo Discord: ${interaction.locale || 'nenhuma'})`);
 

@@ -33,7 +33,8 @@
         "field_uptime": "<:ete_abelhinha:1398491849936732221> **Uptime**",
         "api_latency": "<:api:1398484605732126803> **API Latency:** `{{apiLatency}}` ms",
         "bot_latency": "<:MaterialSymbolsRobot2Sharp:1398485294893895712> **Bot Latency:** `{{latency}}` ms",
-        "database_latency": "<:Mufflien_Stare:1398488840775274567> **Database Latency:** `0ms` **(Implementing)**",
+        "database_latency": "<:Mufflien_Stare:1398488840775274567> **Database Latency:** `{{databaseLatency}}ms`",
+        "database_disconnected": "Disconnected",
         "requested_by": "Requested by {{authorTag}}"
     },
     "setlang": {
@@ -47,7 +48,10 @@
             }
         },
         "no_permission": "You do not have permission to use this command. Only members with 'Manage Server' permission can do so.",
-        "success": "Bot language set to **{{locale}}** in this server."
+        "success": "Bot language set to **{{locale}}** in this server.",
+        "select_language_placeholder": "Select a language...",
+        "select_language_prompt": "Please select the language you'd like me to use in this server:",
+        "selection_timeout": "You didn't select a language in time. Please try again."
     },
     "botinfo": {
         "description": "Discover everything about FatCat—the astronaut bot and galactic DJ!",
@@ -58,12 +62,30 @@
         },
         "title": "Is the Moon really made of cheese?",
         "greeting": "Hey, earthling! I’m FatCat! <:stars:1398495087310409838>",
-        "about_me": "Tired of Earth’s noise, I jumped into my ship and headed to the moons of Ecliptia, where I discovered the power of music: each note is a cosmic purr. Since then, I’ve been sharing my tunes across servers with catlike grace and an open heart. Now I’m cruising on version **`v{{version}}`**, ready to follow the beat wherever it leads.",
+        "about_me": "Tired of Earth’s noise, I jumped into my ship and headed to the moons of **Ecliptia** <:alien_UFO:1398715408755720443>, where I discovered the power of music: each note is a cosmic purr. Since then, I’ve been sharing my tunes across servers with catlike grace and an open heart. Now I’m cruising on version **`v{{version}}`**, ready to follow the beat wherever it leads. <a:Mufflien_RainbowCuteStair:1398715396005167264>",
         "stats": "I’m in **`{{guilds}}`** servers, reaching **`{{users}}`** fellow travelers with **`{{commands}}`** musical commands. I’ve been online for **`{{uptime}}`**, broadcasting from shard **`{{shardId}}`** (of **`{{totalShards}}`**).",
         "contributors_list": "**Co-pilots on deck:**",
         "no_contributors": "No official co-pilots yet... but the crew’s always ready to welcome more!",
-        "thanks": "Hey, <@{{authorTag}}>, thanks for keeping me close. If life gets heavy, pop in your headphones, take a deep breath, and call me—whether you need to dance, reflect, or vibe to that Billie Eilish track, I’ve got you. Thanks for joining me on this cosmic journey! 🌌",
-        "footer": "Requested by {{authorTag}}"
+        "thanks": "Hey, <@{{authorTag}}>, thanks for keeping me close. If life gets heavy, pop in your headphones, take a deep breath, and call me—whether you need to dance, reflect, or vibe to that Billie Eilish track, I’ve got you. Thanks for joining me on this cosmic journey! <:gleep_glorp_cat:1398715997770485940>",
+        "footer": "Requested by {{authorTag}}",
+        "select_placeholder": "Select a category for more details...",
+        "option_tech": "Technologies",
+        "option_authors": "Authors and Contributors",
+        "option_processing": "Processing and Performance",
+        "option_database": "Database",
+        "option_djs": "Discord.js",
+        "option_commands_executed": "Executed Commands",
+        "option_about_me": "About Me",
+        "button_github": "GitHub",
+        "button_support": "Support Server",
+        "button_invite": "Invite Bot",
+        "tech_description": "FatCat is built with a team of technologies that work in harmony to give you the best experience:\n\n- **Node.js:** It's the bot's heart, ensuring it's fast and can handle everything at once.\n- **Discord.js:** Our bridge to Discord! With it, FatCat interacts with servers and with you smoothly.\n- **Moonlink.js:** The magic behind the music! It's what allows FatCat to play your favorite songs with incredible quality.\n- **Firebase Realtime Database:** Our logbook! Where we store your server's settings, like your preferred language.\n- **i18next:** So FatCat can talk to you in your language, no matter where you are!\n\nAnd here are some of our main packages:\n- `discord.js`: {{djsVersion}}\n- `moonlink.js`: {{moonlinkVersion}}\n- `firebase`: {{firebaseVersion}}\n- `i18next`: {{i18nextVersion}}\n- `dotenv`: {{dotenvVersion}}\n\nThis combination helps us keep FatCat always ready for action, with performance you can trust!",
+        "authors_description": "This purring bot was created by the same crew behind **Moonlink.js**! 🛸\n\n**Flight crew:**\n- **1Lucas1apk**\n- **Moto65075**\n\nAnd of course, with the help of stellar folks who keep the engines running!",
+        "processing_description": "Under the hood, I'm tuned like a good intergalactic mixtape! 💽\nI organize my commands, reply in a flash, and use just the right memory—not even lag can catch me.\n\n- **Total Memory (RSS):** {{rssMemory}} MB\n- **Heap Total:** {{heapTotalMemory}} MB\n- **Heap Used:** {{heapUsedMemory}} MB\n\nEven cosmic events run smooth with me on deck!",
+        "database_description": "My memories live in a magical logbook called **Firebase**! ✨\n\nIt helps me remember everything—from your server's language to music settings:\n- Updates instantly\n- Grows as I grow\n- Smart cache for quick responses\n- And it never forgets, not even after a galactic reboot!",
+        "djs_description": "I use **Discord.js v{{djsVersion}}** as my bridge to the Discord universe! 🌌\n\nWith it, I craft stylish messages, handle commands with ease, and split the load when I’m in tons of servers. Always on beat, never missing a drop!",
+        "commands_executed_description": "I’ve handled a bunch of commands across the galaxy! 🎶\n\n- **Total Loaded:** {{totalCommands}}\n- **Message Commands:** {{messageCommands}}\n- **Slash Commands:** {{slashCommands}}\n\nEach one crafted with feline finesse to make your journey more fun!",
+        "about_me_text": "Hello! I am **{{botName}}** (ID: `{{botId}}`, Tag: `{{botTag}}`), a bot born in Brazil 🇧🇷, with a CPF that sounds like a purr: `400.289.220.00` (meow!).\n\nMy journey began on **{{createdAt}}**, and since then, I've been dedicated to bringing music and fun to your community. Currently, I am **{{botStatus}}** {{botActivity}}.\n\nI am a digital feline who loves exploring the Discord universe, always ready to help and liven up your server with the best beats and features. My mission is to make your Discord experience even more incredible and full of purrs!\n\n**Statistics:**\n- **Guilds:** `{{guildCount}}`\n- **Users:** `{{userCount}}`\n- **Channels:** `{{channelCount}}`\n- **Node.js Version:** `{{nodeVersion}}`\n- **Discord.js Version:** `{{djsVersion}}`"
     },
     "error": {
         "command_not_found": "🤔 | Was this command really supposed to exist? I looked on my iPod and it's not there, please try again later, I'll alert my developers.",

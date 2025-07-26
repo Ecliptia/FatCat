@@ -20,7 +20,7 @@ class Logger {
 
         const print = console[level] || console.log;
 
-        print(final) //python in js
+        print(final)
     }
 
     debug(context, ...args) {

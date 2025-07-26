@@ -1,51 +1,40 @@
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join, dirname } from 'path';
+import { database, ref, get, set } from './firebase.js';
+import { child } from 'firebase/database';
 import logger from '../../logger.js';
 
-const settingsFilePath = join(process.cwd(), './src/assets/local/guildSettings.json');
-let guildSettings = {};
+const guildSettingsCache = new Map();
 
-function loadSettings() {
-    if (existsSync(settingsFilePath)) {
-        try {
-            const data = readFileSync(settingsFilePath, 'utf-8');
-            guildSettings = JSON.parse(data);
-            logger.debug('[GuildSettings] Configurações carregadas com sucesso.');
-        } catch (error) {
-            logger.error('[GuildSettings] Falha ao carregar o arquivo de configurações.', error);
-            guildSettings = {};
-        }
-    } else {
-        logger.warn('[GuildSettings] Arquivo de configurações não encontrado. Criando um novo.');
-        saveSettings();
+async function getGuildLocale(guildId) {
+    if (guildSettingsCache.has(guildId)) {
+        return guildSettingsCache.get(guildId);
     }
-}
 
-function saveSettings() {
     try {
-        const dir = dirname(settingsFilePath);
-        if (!existsSync(dir)) {
-            mkdirSync(dir, { recursive: true });
+        const dbRef = ref(database);
+        const snapshot = await get(child(dbRef, `guildSettings/${guildId}/locale`));
+        if (snapshot.exists()) {
+            const locale = snapshot.val();
+            guildSettingsCache.set(guildId, locale);
+            return locale;
+        } else {
+            const defaultLocale = 'pt-BR';
+            guildSettingsCache.set(guildId, defaultLocale);
+            return defaultLocale;
         }
-        writeFileSync(settingsFilePath, JSON.stringify(guildSettings, null, 2), 'utf-8');
-        logger.debug('[GuildSettings] Configurações salvas com sucesso.');
     } catch (error) {
-        logger.error('[GuildSettings] Falha ao salvar o arquivo de configurações.', error);
+        logger.error(`[GuildSettings] Falha ao buscar configurações para a guilda ${guildId} no Firebase:`, error);
+        return 'pt-BR';
     }
 }
 
-function getGuildLocale(guildId) {
-    return guildSettings[guildId]?.locale;
-}
-
-function setGuildLocale(guildId, locale) {
-    if (!guildSettings[guildId]) {
-        guildSettings[guildId] = {};
+async function setGuildLocale(guildId, locale) {
+    guildSettingsCache.set(guildId, locale);
+    try {
+        await set(ref(database, `guildSettings/${guildId}/locale`), locale);
+        logger.debug(`[GuildSettings] Idioma da guilda ${guildId} definido para ${locale} no Firebase.`);
+    } catch (error) {
+        logger.error(`[GuildSettings] Falha ao salvar configurações para a guilda ${guildId} no Firebase:`, error);
     }
-    guildSettings[guildId].locale = locale;
-    saveSettings();
 }
-
-loadSettings();
 
 export default { getGuildLocale, setGuildLocale };

@@ -1,40 +1,59 @@
-import { i18next, translate } from '../i18n/index.js';
-import logger from '../../logger.js';
+import { i18next, translate } from "../i18n/index.js";
+import logger from "../../logger.js";
 
 export default class Command {
-    constructor({ name, category, tags = [], slash = false, options = [], cooldown = 2, devOnly = false }) {
-        this.name = name;
-        this.category = category;
-        this.tags = tags;
-        this.slash = slash;
-        this.options = options;
-        this.cooldown = cooldown;
-        this.devOnly = devOnly;
-    }
+  constructor({
+    name,
+    description,
+    category,
+    tags = [],
+    slash = false,
+    options = [],
+    cooldown = 2,
+    devOnly = false,
+  }) {
+    this.description = description;
+    this.name = name;
+    this.category = category;
+    this.tags = tags;
+    this.slash = slash;
+    this.options = options;
+    this.cooldown = cooldown;
+    this.devOnly = devOnly;
+  }
 
-    getDescription(locale) {
-        return translate(locale, `${this.name}.description`);
+  getDescription(locale) {
+    if (this.description) {
+      return this.description;
     }
+    return translate(locale, `${this.name}.description`);
+  }
 
-    getCategory(locale) {
-        return translate(locale, `categories.${this.category}`);
-    }
+  getCategory(locale) {
+    return translate(locale, `categories.${this.category}`);
+  }
 
-    getTags(locale) {
-        return this.tags.map(tag => translate(locale, `tags.${tag}`));
-    }
+  getTags(locale) {
+    return this.tags.map((tag) => translate(locale, `tags.${tag}`));
+  }
 
-    getUsage(locale) {
-        return translate(locale, `${this.name}.usage`, { returnObjects: true });
-    }
+  getUsage(locale) {
+    return translate(locale, `${this.name}.usage`, { returnObjects: true });
+  }
 
-    getAliases(locale) {
-        const aliases = translate(locale, `${this.name}.aliases`, { returnObjects: true });
-        return Array.isArray(aliases) ? aliases : [];
-    }
+  getAliases(locale) {
+    const aliases = translate(locale, `${this.name}.aliases`, {
+      returnObjects: true,
+    });
+    return Array.isArray(aliases) ? aliases : [];
+  }
 
-    async execute(context) {
-        logger.warn(`[Command] O método execute não foi implementado para o comando ${this.name}.`);
-        throw new Error(`O método execute não foi implementado para o comando ${this.name}.`);
-    }
+  async execute(context) {
+    logger.warn(
+      `[Command] O método execute não foi implementado para o comando ${this.name}.`,
+    );
+    throw new Error(
+      `O método execute não foi implementado para o comando ${this.name}.`,
+    );
+  }
 }

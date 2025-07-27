@@ -65,6 +65,7 @@
     "dotenv": "^17.2.1",
     "firebase": "^12.0.0",
     "i18next": "^25.3.2",
-    "moonlink.js": "^4.52.2"
+    "moonlink.js": "^4.52.2",
+    "prettier": "^3.6.2"
   }
 }
